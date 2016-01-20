@@ -1,39 +1,33 @@
-<ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Register</h1>
-  </ion-header-bar>
-  <ion-content>
-      <div class="card">
-      <div class="item item-divider">
-        <h3>Register Now!</h3>
-      </div>
+ <ion-view view-title="Register Now!">
+        <ion-content class="padding">
+         <div class="card">
         <label class="item item-input item-stacked-label">
-          <span class="input-label">First Name</span>
-          <input type="text" placeholder="John" ng-model="newAcc.firstname">
+          <span class="input-label">Complete Name</span>
+          <input type="text" placeholder="Ex. Juan Dela Cruz" ng-model="newAcc.completename">
         </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Middle Name</span>
-          <input type="text" placeholder="Suhr" ng-model="newAcc.middlename">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Last Name</span>
-          <input type="text" placeholder="Suhr" ng-model="newAcc.lastname">
-        </label>
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">Email</span>
-          <input type="email" placeholder="john@suhr.com" ng-model="newAcc.email">
-        </label>
-        <label class="item item-input item-stacked-label">
+         <label class="item item-input item-stacked-label">
           <span class="input-label">Username</span>
-          <input type="text" placeholder="Suhr" ng-model="newAcc.username">
+          <input type="text" placeholder="Ex. Juan" ng-model="newAcc.username">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">Password</span>
           <input type="password" placeholder="*****" ng-model="newAcc.password">
         </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="juan.delacruz@suhr.com" ng-model="newAcc.email">
+        </label>
+       <label class="item item-input item-stacked-label">
+          <span class="input-label">Mobile Number</span>
+          <input type="text" placeholder="Ex. 092619+++" ng-model="newAcc.contact">
+        </label>
+         <label class="item item-input item-stacked-label">
+          <span class="input-label">Complete Address</span>
+          <input type="text" placeholder="Ex. Brgy.31 Agusan Ave. Cagayan de Oro City" ng-model="newAcc.address">
+        </label>
          <button class="button button-block button-balanced" ng-click="signup()">
             Sign Up
           </button>
       </div>
-  </ion-content>
-</ion-modal-view>
+        </ion-content>
+      </ion-view>

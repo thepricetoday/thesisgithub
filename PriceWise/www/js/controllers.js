@@ -36,7 +36,7 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('DashCtrl', function($scope,$http,$timeout,$ionicPopup) {
 
-$scope.provincelist = $http.get('http://localhost/ElectiveThesisProject/productprice/place').
+$scope.provincelist = $http.get('http://localhost/prisewise(web)/productprice/place').
     then(function(response) { 
       console.log(response);
       $scope.provinces = response.data;
@@ -151,59 +151,21 @@ $scope.provincelist = $http.get('http://localhost/ElectiveThesisProject/productp
 .controller('AccountCtrl', function($scope,$http,$ionicPopup) {
 
 
-// // showpopup method code
 
-// $scope.showPopup = function() {
-
-//    $scope.data = {}
-
-//    var myPopup = $ionicPopup.show({
-//       template: ' Username<input type="text" ng-model="data.userName" required><br>Password  <input type="password" ng-model="data.userPassword" required> ',
-//       title: 'Sign Up',
-//       scope: $scope,
-//       buttons: [{
-//          text: 'Cancel'
-//       }, {
-//          text: '<b>Login</b>',
-//          type: 'button-positive',
-//          onTap: function(e) {
-//             if (!$scope.data.userPassword && !$scope.data.userName ) {
-//                //don't allow the user to close unless he enters wifi password
-//                e.preventDefault();
-//                console.log('error be like');
-//             } 
-//             else if (!$scope.data.userPassword) {
-//                e.preventDefault();
-//             }
-//             else if (!$scope.data.userName) {
-//                e.preventDefault();
-//             }
-//             else {
-//                return $scope.data;
-//             }
-//          }
-//       }, ]
-//    });
-//    myPopup.then(function(res) {
-//       if (res) {
-//          if (res.userPassword == res.confirmPassword) {
-//             console.log('Password Is Ok');
-//          } else {
-//             console.log('Password not matched');
-//          }
-//       } else {
-//          console.log('Enter password');
-//       }
-//    });
-// };
-  
-        
 })
 
 
-.controller('RegisterCtrl', function($scope,$http,$ionicPopup) {
-
-
-  
+.controller('RegisterCtrl', function($scope,$http,$rootScope) {
+ 
+ $rootScope.newAcc = {};
+ $scope.signup = function(){
+    //console.log("naka click ka"); 
+    $http.post("http://localhost/prisewise(web)/productprice/addUserMobile/" , $rootScope.newAcc)
+     .then(function(response) {
+      console.log(response);  
+    }, function(response) {
+          console.log(response);
+        }); 
         
-})
+  };
+});
