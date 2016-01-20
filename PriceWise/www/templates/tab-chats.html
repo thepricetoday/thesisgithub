@@ -1,0 +1,27 @@
+<ion-view view-title="List">
+  <ion-content class="padding">
+    <div class="card">
+  <div class="item item-text-wrap">
+     <div class="total"><strong>Total: </strong> </div>
+    <div class="total amount"><strong>&#8369;{{getCartPrice()}}</strong> </div>
+  </div>
+   </div>
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="product in cart" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+      <div>
+        <div class="col-item col-image "><center><img src="{{product.imageURL}}"></center></div>
+  <div class="col-item"><center>
+    <div class="col-name"><strong>{{product.name}}</strong></div>
+     <div class="col-list">{{product.quantity}} X &#8369;{{product.price}}/{{product.unitofmeasure}}</div>
+     </center>
+     </div>
+     </div>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-calm" ng-click="purchased(product)">
+          Purchased
+        </ion-option-button>
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

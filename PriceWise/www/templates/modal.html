@@ -1,0 +1,24 @@
+<div class="modal">
+        <header class="bar bar-header bar-positive">
+          <h1 class="title">Your Province</h1>
+          <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+        </header>
+        <content has-header="true" padding="true">
+        <div class="padding modal-padding">
+         <label class="item item-input item-select">
+    <div class="input-label">
+      Province 
+    </div>
+    <select  name="provinceSelect" id="provinceSelect" ng-model="provinceSelect">
+      <option ng-repeat="province in provinces"  ng-model="selectedprovince" value="{{province.ID}}">{{ province.placeNAME }}</option>
+    </select>
+  </label>
+  
+
+<button class="button button-balanced button button-block " ng-click="callToAddToProductList()">
+  Save
+	</button>
+	
+	</div>
+        </content>
+      </div>

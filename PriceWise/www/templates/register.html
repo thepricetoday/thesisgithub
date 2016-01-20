@@ -1,0 +1,39 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Register</h1>
+  </ion-header-bar>
+  <ion-content>
+      <div class="card">
+      <div class="item item-divider">
+        <h3>Register Now!</h3>
+      </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">First Name</span>
+          <input type="text" placeholder="John" ng-model="newAcc.firstname">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Middle Name</span>
+          <input type="text" placeholder="Suhr" ng-model="newAcc.middlename">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Last Name</span>
+          <input type="text" placeholder="Suhr" ng-model="newAcc.lastname">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="john@suhr.com" ng-model="newAcc.email">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Username</span>
+          <input type="text" placeholder="Suhr" ng-model="newAcc.username">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="*****" ng-model="newAcc.password">
+        </label>
+         <button class="button button-block button-balanced" ng-click="signup()">
+            Sign Up
+          </button>
+      </div>
+  </ion-content>
+</ion-modal-view>

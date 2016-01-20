@@ -1,0 +1,25 @@
+<ion-view view-title="My Account">
+  <ion-content class="padding">
+    <ion-list>
+        <div class="item">
+             <form ng-submit="doLogin()">
+                <div class="list">
+                    <label class="item item-input">
+                      <input type="text"  ng-model="loginData.username" placeholder="Username">
+                    </label>
+                    <label class="item item-input">
+                      <input type="password"  ng-model="loginData.password" placeholder="Password">
+                    </label>
+                 </div>
+                         <button class="button button-block button-balanced">
+                            Login
+                        </button>                  
+              </form>
+                    <center><a href="#/tab/register" title="">Register</a></center>
+                  <button class="button button-block button-balanced">
+                      Guest
+                  </button>
+    </div>
+    </ion-list>
+  </ion-content>
+</ion-view>
