@@ -2,17 +2,32 @@
   <ion-content class="padding">
     <div class="card">
   <div class="item item-text-wrap">
-     <div class="total"><strong>Total: </strong> </div>
-    <div class="total amount"><strong>&#8369;{{getCartPrice()}}</strong> </div>
+  <div class="row">
+     <div class="col"><strong>Total: </strong> 
+   <strong>&#8369;{{getCartPrice()}}</strong> </div>
+     <div class=" col btn-right"><button class="button button-stable" ng-click="addtoAccount()">
+  <i class="ion-archive"></i>
+</button>
+<button class="button button-stable" ng-click="addCutomize()">
+  <i class="ion-plus-round"></i>
+</button>
+</div>
+  </div>
   </div>
    </div>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="product in cart" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="product in cart" type="item-text-wrap" ng-click="addquantity()">
       <div>
         <div class="col-item col-image "><center><img src="{{product.imageURL}}"></center></div>
   <div class="col-item"><center>
     <div class="col-name"><strong>{{product.name}}</strong></div>
      <div class="col-list">{{product.quantity}} X &#8369;{{product.price}}/{{product.unitofmeasure}}</div>
+     </center>
+     </div>
+      <div class="col-item">
+      <center>
+    <div class="col-name"></div>
+     <div class="col-list"></div>
      </center>
      </div>
      </div>

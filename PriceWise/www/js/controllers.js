@@ -1,5 +1,5 @@
 angular.module('starter.controllers', ['ionic'])
-.controller('TabsCtrl', function($scope, $timeout,$ionicLoading,sessionService) {
+.controller('TabsCtrl', function($scope, $timeout,$ionicLoading,$http,sessionService) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -29,6 +29,32 @@ angular.module('starter.controllers', ['ionic'])
     });
     return total;
   };
+  $scope.get = function () {
+    var total = 0;
+    $scope.cart.forEach(function (product) {
+      total += product.price * product.quantity;
+    });
+    return total;
+  };
+   console.log($scope.cart);
+
+
+
+   $scope.addtoAccount= function(){
+  console.log( $scope.cart );
+}
+
+$scope.addtoAccount = function(){
+
+    $http.post("http://localhost/prisewise(web)/productprice/saveList/" , $scope.cart)
+     .then(function(response) {
+      console.log(response);  
+    }, function(response) {
+          console.log(response);
+        }); 
+        
+  };
+
 
 }) 
 
@@ -36,7 +62,7 @@ angular.module('starter.controllers', ['ionic'])
 
 
 .controller('DashCtrl', function($scope,$http,$timeout,$ionicPopup) {
-
+ $scope.selected= {};
 $scope.provincelist = $http.get('http://localhost/prisewise(web)/productprice/place').
     then(function(response) { 
       console.log(response);
@@ -163,12 +189,17 @@ $scope.provincelist = $http.get('http://localhost/prisewise(web)/productprice/pl
     var found = false;
     $scope.cart.forEach(function (item) {
       if (item.name === product.name) {
-        item.quantity++;
+          if(!product.quantity){
+            item.quantity++;
         found = true;
+          }
+        
       }
     });
     if (!found) {
-      $scope.cart.push(angular.extend({quantity: 1}, product));
+      console.log('no');
+      $scope.cart.push(angular.extend(product));
+     
     }
   };
 
@@ -177,23 +208,49 @@ $scope.provincelist = $http.get('http://localhost/prisewise(web)/productprice/pl
   
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
+.controller('ChatsCtrl', function($scope, $ionicPopup) {
  
+
   $scope.purchased = function(product) {
     console.log($scope.cart);
     $scope.cart.splice($scope.cart.indexOf(product), 1);
     console.log($scope.cart);
   };
 
+  $scope.addCutomize = function (){
+    $scope.product = {};
+            var addproductPopup = $ionicPopup.show({
+              templateUrl: 'templates/addproduct.html',
+              scope: $scope,
+              cssClass: 'addproductPopup',
+              buttons: [ { text: 'Cancel' },
+              {   text: '<b>Add</b>',
+                  type: 'button-positive',
+                  onTap: function(e) {
+                    if (!$scope.product) {
+                        //don't allow the user to close unless he enters wifi password
+                        e.preventDefault();
+                       console.log($scope.product);
+                      } else {
+                        return $scope.newAcc;
+                        console.log('guba');
+                      }
+                  }
+                }]
+              })
+
+ addproductPopup.then(function(res) {
+    console.log('Tapped!', res);
+    console.log($scope.product);
+    $scope.cart.push(angular.extend($scope.product));
+    console.log($scope.cart);
+  });
+
+  }
 })
 
 
-.controller('AccountCtrl', function($scope,$http,$ionicPopup, $location,loginService,sessionService) {
+.controller('AccountCtrl', function($scope,$http,$ionicPopup, $location,signupService,loginService,sessionService) {
  $scope.field = '';
 
  console.log(loginService.isLoggedIn());
@@ -237,21 +294,21 @@ $scope.guest = function(){
   $location.path('tab/dash')
 }
 $scope.register = function(){
-    $scope.adduser= {}
+    $scope.newAcc= {}
             var registerPopup = $ionicPopup.show({
               templateUrl: 'templates/register.html',
               scope: $scope,
               cssClass: 'registerPopup',
-              buttons: [{
-                  text: '<b>Register</b>',
+              buttons: [ { text: 'Cancel' },
+              {   text: '<b>Sign Up</b>',
                   type: 'button-positive',
                   onTap: function(e) {
-                    if (!$scope.user.username && !$scope.user.password ) {
+                    if (!$scope.newAcc ) {
                         //don't allow the user to close unless he enters wifi password
                         e.preventDefault();
-                       
+                       console.log('u just click');
                       } else {
-                        return $scope.user;
+                        return $scope.newAcc;
                         console.log('guba');
                       }
                     // console.log(loginService.login(user,$scope));
@@ -259,10 +316,20 @@ $scope.register = function(){
                   }
                 }]
               })
-        loginPopup.then(function(res) {
-        loginService.login(res,$scope);
- });
-  
+        registerPopup.then(function(res) {
+          if(res){signupService.signup(res);}
+          else{
+             $location.path('tab/dash')
+          }
+          
+      });  
+$scope.registercancel = function(){
+   registerPopup.close();
+   loginPopup.close();
+  $location.path('tab/dash')
+}
+
+
 }
       }
 
@@ -289,8 +356,6 @@ $scope.logout = function(){
                         return $scope.user;
                         console.log('guba');
                       }
-                    // console.log(loginService.login(user,$scope));
-                    // console.log($scope.user);
                   }
                 }]
               })
@@ -363,7 +428,22 @@ $scope.logout = function(){
     };
 
 })
+.factory('signupService',function($http){
+    return {
+      signup:function(newAcc){
+        console.log(newAcc);
+      $http.post("http://localhost/prisewise(web)/productprice/addUserMobile/" , newAcc)
+        .then(function(response) {
+          console.log(response);  
+      }, function(response) {
+        registerPopup.close();
+          console.log(response);
+        }); 
+      
+      }
+    };
 
+})
 .factory('loginService',function($http,$location,$ionicPopup,sessionService){
       return{
         login:function(user,scope){

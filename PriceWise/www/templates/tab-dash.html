@@ -1,5 +1,5 @@
 <ion-view view-title="COMMODITY PREVAILING RETAIL PRICES">
-  <ion-content class="padding">
+  <ion-content class="padding"> 
     <div class="card">
   <div class="item item-text-wrap">
     <center class="title">
@@ -15,29 +15,32 @@
     <input type="text" placeholder="Search" ng-model="name">
   </label>
 </div>
-<div class="list" ng-repeat="product in list | filter:name ">
-<div class="row item">
+<ion-list>
 
-  <div class="col col-image "><center><img src="{{product.imageURL}}"></center></div>
-  <div class="col"><center>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="product in list | filter:name" type="item-text-wrap">
+      <div>
+        <div class="col-item col-image "><center><img src="{{product.imageURL}}"></center></div>
+
+  <div class="col-item"><center>
     <div class="col-name"><strong>{{product.name}}</strong></div>
      <div class="col-list">&#8369;{{product.price}}/{{product.unitofmeasure}}</div>
      </center>
      </div>
-      <div class="col"> 
-   <center><button class="button button-small" ng-click="addToCart(product)">
-     <img src="img/logomini2.png" class="button-img">
-    </button></center></div>
-  <!-- <div class="col"> 
-  <form>
-      <input type="number" placeholder="Quantity" id="Quantity" data-ng-model="Quantity" required>
-    </div>
-   <div class="col"> 
-   <center><button class="button button-small" ng-click="addToFavorite($index)">
-     <img src="img/logomini2.png" class="button-img">
-    </button></center></div>
-    </form>   -->
-</div>  
-</div>
+     </div>
+     <div class="col-item"><center>
+    <div class="col-name"><strong>Quantity</strong></div>
+     <div class="col-name"><p>Ex. if 1 1/2 use 1.5</p></div>
+     <div class="col-list"><input class="quantityfield"type="text" ng-model="product.quantity"></div>
+     </center>
+     </div>
+     </div>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-balanced" ng-click="addToCart(product)">
+          Add to List
+        </ion-option-button>
+
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
+ 
