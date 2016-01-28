@@ -111,16 +111,6 @@ label.item-step .row{
     
 }
 /**Header**/
-.title.title-left.header-item:after {
-    content: url(logo1.png);
-    position: absolute;
-    top: 25px;
-    right: 80px;
-    width: 0.1em;
-    height: 0.1em;
-    -webkit-transform: translateY(-30px) rotate(0deg) scale(0.2);
-    -moz-transform: translateY(-30px) rotate(0deg) scale(0.2);
-}
 /**Intro**/
 .logo > img{
     width:100%;
@@ -276,4 +266,33 @@ div.col-image > center {
 center.title{
     float: right;
     width: 87%;
+}
+.popup-container .popup {
+    width: 75%;
+    border-radius: 0px;
+    height: 40%%;
+}
+.popup-head {
+    padding: 35px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+.popup-container {
+    top: -150px;
+}
+.myPopup > .popup {
+    width: 55%;
+    border-radius: 3px;
+    line-height: 0;
+}
+.myPopup>.popup>.popup-head {
+    padding: 20px 10px;
+}
+.registerPopup {
+    top: -25px;
+}
+.registerPopup > .popup {
+    /* top: 0px; */
+    height: 600px;
+    width: 80%;
 }

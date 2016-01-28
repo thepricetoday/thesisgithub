@@ -6,7 +6,7 @@
     <h2 ng-repeat="place in places"><strong >{{place.markets}}</strong></h2>
     <div ng-repeat="data in updata"><strong>Date:</strong> {{data.date_start  | date:'MMMM-dd'}} to {{data.date_end | date:'MMMM-dd-yyyy'}}</div>
     </center>
-      <button class="button btn-locator" ng-click="myPopup()"></button>
+      <button class="button btn-locator" ng-click="placeModal()"></button>
   </div>
    </div>
     <div class="list list-inset"> 
